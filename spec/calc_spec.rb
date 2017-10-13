@@ -16,12 +16,12 @@ describe 'Calculations' do
 
   let(:respondents) do
     [
-      { id: 'john', weighting: 1100, answers: { gender: [:male], age: [:young], colour: [:red] } },
-      { id: 'petr', weighting: 1100, answers: { gender: [:male], age: [:old], colour: [:red] } },
-      { id: 'steve', weighting: 1100, answers: { gender: [:male], age: [:middle], colour: [:blue] } },
-      { id: 'rachel', weighting: 1000, answers: { gender: [:female], age: [:young], colour: [:blue] } },
-      { id: 'susan', weighting: 1000, answers: { gender: [:female], age: [:old], colour: [:red] } },
-      { id: 'cate', weighting: 1000, answers: { gender: [:female], age: [:middle], colour: [:blue] } }
+      { id: 'john', weighting: 1100, answers: { gender: [:male], age: [:young], colour: [:red], likes: [:ios, :android] } },
+      { id: 'petr', weighting: 1100, answers: { gender: [:male], age: [:old], colour: [:red], likes: [:ios, :myos] } },
+      { id: 'steve', weighting: 1100, answers: { gender: [:male], age: [:middle], colour: [:blue], likes: [:nokia, :android] } },
+      { id: 'rachel', weighting: 1000, answers: { gender: [:female], age: [:young], colour: [:blue], likes: [:alcatel, :ios, :android, :nokia] } },
+      { id: 'susan', weighting: 1000, answers: { gender: [:female], age: [:old], colour: [:red], likes: [:ios, :nokia, :htc, :android] } },
+      { id: 'cate', weighting: 1000, answers: { gender: [:female], age: [:middle], colour: [:blue], likes: [:htc, :ios, :nokia] } }
     ]
   end
 
@@ -37,6 +37,36 @@ describe 'Calculations' do
   subject { Calculator.new(question: question, audience: audience).result }
   let(:question) { nil }
   let(:audience) { nil }
+
+  context "likes question" do
+    let(:question) { :likes }
+
+    it 'should return correct result' do
+      expect(subject).to match_array([
+        {:option=>"ios", :responses_count=>5, :weighted=>5200, :percentage=>82.54},
+        {:option=>"android", :responses_count=>4, :weighted=>4200, :percentage=>66.67},
+        {:option=>"nokia", :responses_count=>4, :weighted=>4100, :percentage=>65.08},
+        {:option=>"htc", :responses_count=>2, :weighted=>2000, :percentage=>31.75},
+        {:option=>"alcatel", :responses_count=>1, :weighted=>1000, :percentage=>15.87},
+        {:option=>"myos", :responses_count=>1, :weighted=>1100, :percentage=>17.46}
+      ])
+    end
+
+    context 'with female or not old audience' do
+      let(:audience) { female_or_not_old_audience }
+
+      it 'should return correct result' do
+        expect(subject).to match_array([
+          {:option=>"android", :responses_count=>4, :weighted=>4200, :percentage=>80.77},
+          {:option=>"ios", :responses_count=>4, :weighted=>4100, :percentage=>78.85},
+          {:option=>"nokia", :responses_count=>4, :weighted=>4100, :percentage=>78.85},
+          {:option=>"htc", :responses_count=>2, :weighted=>2000, :percentage=>38.46},
+          {:option=>"alcatel", :responses_count=>1, :weighted=>1000, :percentage=>19.23},
+          {:option=>"myos", :responses_count=>0, :weighted=>0, :percentage=>0.0}
+        ])
+      end
+    end
+  end
 
   context "gender question" do
     let(:question) { :gender }

@@ -24,6 +24,10 @@ module EsHelpers
                 age: {
                   type: "text",
                   fielddata: true
+                },
+                likes: {
+                  type: "text",
+                  fielddata: true
                 }
               }
             }
