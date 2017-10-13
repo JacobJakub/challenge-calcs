@@ -36,7 +36,8 @@ class EsQuery
     request[:aggs][:options] = {
       terms: {
         field: @question,
-        min_doc_count: 0
+        min_doc_count: 0,
+        size: 100
       },
       aggs: {
         weighted: {

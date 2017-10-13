@@ -16,12 +16,12 @@ describe 'Calculations' do
 
   let(:respondents) do
     [
-      { id: 'john', weighting: 1100, answers: { gender: [:male], age: [:young], colour: [:red], likes: [:ios, :android] } },
-      { id: 'petr', weighting: 1100, answers: { gender: [:male], age: [:old], colour: [:red], likes: [:ios, :myos] } },
-      { id: 'steve', weighting: 1100, answers: { gender: [:male], age: [:middle], colour: [:blue], likes: [:nokia, :android] } },
-      { id: 'rachel', weighting: 1000, answers: { gender: [:female], age: [:young], colour: [:blue], likes: [:alcatel, :ios, :android, :nokia] } },
-      { id: 'susan', weighting: 1000, answers: { gender: [:female], age: [:old], colour: [:red], likes: [:ios, :nokia, :htc, :android] } },
-      { id: 'cate', weighting: 1000, answers: { gender: [:female], age: [:middle], colour: [:blue], likes: [:htc, :ios, :nokia] } }
+      { id: 'john', weighting: 1100, answers: { gender: [:male], age: [:young], colour: [:red], likes: [:ios, :android, :icecream] } },
+      { id: 'petr', weighting: 1100, answers: { gender: [:male], age: [:old], colour: [:red], likes: [:ios, :myos, :panckaes] } },
+      { id: 'steve', weighting: 1100, answers: { gender: [:male], age: [:middle], colour: [:blue], likes: [:nokia, :android, :arduino, :horses] } },
+      { id: 'rachel', weighting: 1000, answers: { gender: [:female], age: [:young], colour: [:blue], likes: [:alcatel, :ios, :android, :nokia, :reddit] } },
+      { id: 'susan', weighting: 1000, answers: { gender: [:female], age: [:old], colour: [:red], likes: [:ios, :nokia, :htc, :android, :facebook] } },
+      { id: 'cate', weighting: 1000, answers: { gender: [:female], age: [:middle], colour: [:blue], likes: [:htc, :ios, :nokia, :selfies] } }
     ]
   end
 
@@ -48,7 +48,14 @@ describe 'Calculations' do
         {:option=>"nokia", :responses_count=>4, :weighted=>4100, :percentage=>65.08},
         {:option=>"htc", :responses_count=>2, :weighted=>2000, :percentage=>31.75},
         {:option=>"alcatel", :responses_count=>1, :weighted=>1000, :percentage=>15.87},
-        {:option=>"myos", :responses_count=>1, :weighted=>1100, :percentage=>17.46}
+        {:option=>"arduino", :responses_count=>1, :weighted=>1100, :percentage=>17.46},
+        {:option=>"facebook", :responses_count=>1, :weighted=>1000, :percentage=>15.87},
+        {:option=>"horses", :responses_count=>1, :weighted=>1100, :percentage=>17.46},
+        {:option=>"icecream", :responses_count=>1, :weighted=>1100, :percentage=>17.46},
+        {:option=>"myos", :responses_count=>1, :weighted=>1100, :percentage=>17.46},
+        {:option=>"panckaes", :responses_count=>1, :weighted=>1100, :percentage=>17.46},
+        {:option=>"reddit", :responses_count=>1, :weighted=>1000, :percentage=>15.87},
+        {:option=>"selfies", :responses_count=>1, :weighted=>1000, :percentage=>15.87}
       ])
     end
 
@@ -62,7 +69,14 @@ describe 'Calculations' do
           {:option=>"nokia", :responses_count=>4, :weighted=>4100, :percentage=>78.85},
           {:option=>"htc", :responses_count=>2, :weighted=>2000, :percentage=>38.46},
           {:option=>"alcatel", :responses_count=>1, :weighted=>1000, :percentage=>19.23},
-          {:option=>"myos", :responses_count=>0, :weighted=>0, :percentage=>0.0}
+          {:option=>"arduino", :responses_count=>1, :weighted=>1100, :percentage=>21.15},
+          {:option=>"facebook", :responses_count=>1, :weighted=>1000, :percentage=>19.23},
+          {:option=>"horses", :responses_count=>1, :weighted=>1100, :percentage=>21.15},
+          {:option=>"icecream", :responses_count=>1, :weighted=>1100, :percentage=>21.15},
+          {:option=>"reddit", :responses_count=>1, :weighted=>1000, :percentage=>19.23},
+          {:option=>"selfies", :responses_count=>1, :weighted=>1000, :percentage=>19.23},
+          {:option=>"myos", :responses_count=>0, :weighted=>0, :percentage=>0.0},
+          {:option=>"panckaes", :responses_count=>0, :weighted=>0, :percentage=>0.0}
         ])
       end
     end
